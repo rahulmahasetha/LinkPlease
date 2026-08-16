@@ -35,6 +35,19 @@ The backend operates on a single `FastAPI` instance running three persistent `as
 2. **`send_dms`**: Polls the SQLite `dms` table for unsent messages, manages rolling 60-second rate limits, and safely `POST`s to the external Mock API. Handles 4xx/5xx errors gracefully.
 3. **`poll_dms`**: Periodically checks the Mock API to confirm if "accepted" DMs eventually transition to `delivered` or `failed`, updating the local database accordingly.
 
+### File Structure
+```text
+LinkPlease/
+├── main.py              # FastAPI endpoints (/rules, /webhook, /stats) and lifecycle management
+├── workers.py           # Background asyncio workers for queuing, sending, and polling DMs
+├── database.py          # SQLite schema definitions and async database connection handling
+├── test_webhook.py      # Local testing script to generate valid HMAC-SHA256 signatures
+├── requirements.txt     # Python dependencies
+├── .env.example         # Template for required environment variables
+├── .gitignore           # Git ignore configurations (ignoring local .db and .env files)
+└── README.md            # Project documentation
+```
+
 ### Tech Stack
 * **Framework:** Python 3, FastAPI, Uvicorn
 * **Database:** SQLite (via `aiosqlite` for non-blocking async queries)
