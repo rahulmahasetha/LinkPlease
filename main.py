@@ -56,8 +56,17 @@ async def webhook(request: Request, x_pseudogram_signature: str = Header(None)):
         raise HTTPException(status_code=401, detail="Invalid signature format")
         
     signature = x_pseudogram_signature.split("=")[1]
+    # The mock API actually signs webhooks using the email address, not the full API key!
+    # The first part of the API key is the base64-encoded email.
+    import base64
+    try:
+        b64_email = API_KEY.split('.')[0]
+        secret = base64.b64decode(b64_email).decode('utf-8')
+    except:
+        secret = API_KEY
+        
     expected_signature = hmac.new(
-        API_KEY.encode('utf-8'),
+        secret.encode('utf-8'),
         body,
         hashlib.sha256
     ).hexdigest()
