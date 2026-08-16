@@ -1,0 +1,11 @@
+# Environments
+.env
+venv/
+__pycache__/
+*.pyc
+
+# Database
+linkplease.db
+
+# OS
+.DS_Store
