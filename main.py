@@ -61,6 +61,10 @@ async def webhook(request: Request, x_pseudogram_signature: str = Header(None)):
     import base64
     try:
         b64_email = API_KEY.split('.')[0]
+        # Add necessary padding for base64 decoding
+        padding_needed = len(b64_email) % 4
+        if padding_needed:
+            b64_email += '=' * (4 - padding_needed)
         secret = base64.b64decode(b64_email).decode('utf-8')
     except:
         secret = API_KEY
