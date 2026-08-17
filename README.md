@@ -2,7 +2,7 @@
 
 **Author:** Rahul Mahaseth  
 **Live Deployment:** [https://linkplease-uxsh.onrender.com](https://linkplease-uxsh.onrender.com)  
-**Loom Walkthrough:** [Insert Loom URL Here]  
+**Loom Walkthrough:** (https://www.loom.com/share/781e0880d268437fa4f2f6aec1f6c7da)
 **Parts Completed:** A + B + C  
 
 ---
